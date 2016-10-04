@@ -3,8 +3,10 @@ package storage
 import "github.com/jen20/riviera/azure"
 
 type CreateStorageAccountResponse struct {
-	Location    *string `mapstructure:"location"`
-	AccountType *string `mapstructure:"accountType"`
+	Location    			*string `mapstructure:"location"`
+	AccountType 			*string `mapstructure:"accountType"`
+	EncryptionEnabled *string `mapstructure:"encryptionEnabled"`
+	AccessTier 				bool `mapstructure:"accessTier"`
 }
 
 type CreateStorageAccount struct {
@@ -13,6 +15,8 @@ type CreateStorageAccount struct {
 	AccountType       *string            `json:"accountType,omitempty"`
 	Location          string             `json:"-" riviera:"location"`
 	Tags              map[string]*string `json:"-" riviera:"tags"`
+	EncryptionEnabled bool							 `json:"-"`
+	AccessTier				string						 `json:"-"`
 }
 
 func (s CreateStorageAccount) APIInfo() azure.APIInfo {
